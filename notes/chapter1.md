@@ -3,7 +3,7 @@
 - 以降の章における流れのまとめ
     - Islandsってゲームをつくる
     - Elixir only -> Elixir + OTP -> Elixir with Phoenix
-- あとPhoenixの利点とかが書いてあった
+- あとPhoenixの利点とかが書いてあった
 
 - Intoroductionのところだけど、
     > Who This Book is not For
@@ -12,4 +12,4 @@
 
     > The same is true for Phoenix. We will take a close look at Channels and Presence, but you won’t learn the rest of Phoenix here.
 
-    とあるので、Phoenixについてはまた別の本で学ぶ必要がありそう
+    とあるので、Phoenixについてはまた別の本で学ぶ必要がありそう
