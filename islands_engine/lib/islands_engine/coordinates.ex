@@ -1,5 +1,5 @@
 defmodule IslandsEngine.Coordinate do
-    alias __MODULE__
+    alias IslandsEngine.{Coordinate, Guesses}
 
     @enforce_keys [:row, :col]
     defstruct [:row, :col]
@@ -12,7 +12,7 @@ defmodule IslandsEngine.Coordinate do
     end
 
     def new(_row, _col) do
-        {:error, :invalid_coordinate}        
+        {:error, :invalid_coordinate}
     end
 
 end
