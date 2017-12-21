@@ -1,4 +1,5 @@
 # Chapter2. ModelData and Behavior
+- Islandsゲームに必要なモデルを分析・実装する章
 - frameworkを使わずに(使うのを延期して)アプリを作る利点
     - bussiness logicがframeworkに引っ張られずに済む
     - コアアプリの一部分としてframeworkを使う(インタフェースとして？)
@@ -8,11 +9,11 @@
     - Elixirにはスゲーのがあるぜ -> Supervisorで云々
         - 永続化しない？
 - ゲームの要件まとめ
-    - モデルの作成
-        - Coordinate
-            1. tuple `{1,1}` bad -> JSON
-            2. map `%{row:1, col:1}` 
-            3. struct good -> key check(on compile), type check(on runtime)
+- モデルの作成
+    - Coordinate
+        1. tuple `{1,1}` bad -> JSON
+        2. map `%{row:1, col:1}` 
+        3. struct good -> key check(on compile), type check(on runtime)
 
 ## 知見
 - 未だオブジェクト思考脳だったので`Island.guess()`で結果 + 状態を変更されたIslandを返すのが新鮮だった
