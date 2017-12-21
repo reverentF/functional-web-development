@@ -1,6 +1,6 @@
 # IslandsEngine
 
-**TODO: Add description**
+ゲームのcore + state machine(scratch)
 
 ## Installation
 

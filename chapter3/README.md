@@ -11,8 +11,14 @@
 
 ## Functional State Machine for Islands
 - 前の章で作ったゲームにState Machineを導入するよ
-- OTPには`:gen_statem`という素晴らしいステートマシンがあるが**今回は使わない**
-
+- OTPには`:gen_statem`という素晴らしいステートマシンがあるが**今回は使わない**でスクラッチでかくよ
+- 状態遷移の可否をfunctionが決める
+    - while list方式で
+- `/lib/islands_engine/rules.ex`
+    - `check/2`
+      - 現在の状態とアクションを渡して状態遷移の可否を決める
+    - ゲームの状態とplayerごとの状態を保持
 
 ## 知見
 - ゲームのロジックと状態の保持は切り分ける
+- mixのtestも書きつつやってみた
