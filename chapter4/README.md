@@ -33,3 +33,5 @@
     - Phoenixを使う際に、Webインタフェースとゲームロジックを分離することにも役立つ
 
 ## Getting Started With GenServer
+- GenServerの使い方から
+    - プログラミングElixirの復習
