@@ -40,7 +40,7 @@ defmodule GameTest do
     assert state_data.rules.state == :players_set
   end
 
-    test "set island both player" do
+  test "set island both player" do
     {:ok, game} = Game.start_link("Dino")
     Game.add_player(game, "Pebbles")
     assert Game.position_island(game, :player1, :atoll, 1, 1) == :ok
@@ -61,5 +61,34 @@ defmodule GameTest do
     assert state_data.rules.player1 == :islands_set
     assert state_data.rules.player2 == :islands_set    
     assert state_data.rules.state == :player1_turn
+  end
+
+  test "guesses check" do
+    {:ok, game} = Game.start_link("Miles")
+    assert Game.guess_coordinate(game, :player1, 1, 1) == :error
+
+    Game.add_player(game, "Trane")
+    assert Game.position_island(game, :player1, :dot, 1, 1) == :ok
+    assert Game.position_island(game, :player2, :square, 1, 1) == :ok
+    # short cut
+    state_data = :sys.get_state(game)
+    state_data = :sys.replace_state(game, fn data ->
+      %{state_data | rules: %Rules{state: :player1_turn}}
+    end)
+    assert state_data.rules.state == :player1_turn
+
+    # guess no islands coordinate
+    assert {:miss, :none, :no_win} == Game.guess_coordinate(game, :player1, 5, 5)
+    # guess invalid player
+    assert :error == Game.guess_coordinate(game, :player1, 3, 1)
+    # guess islands coordinate
+    assert {:hit, :dot, :win} == Game.guess_coordinate(game, :player2, 1, 1)
+  end
+
+  test "process name" do
+    via = Game.via_tuple("Lena")
+    GemServer.start_link(Game, "Lena", name: via)
+    assert :sys.get_state(via) != :error
+    {:error, _} = GemServer.start_link(Game, "Lena", name: via)
   end
 end

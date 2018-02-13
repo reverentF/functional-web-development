@@ -26,11 +26,11 @@ defmodule IslandsEngine.Rules do
     end
   end
 
-  def check(%Rules{state: :player1_turn} = rules, {:guess_codinate, :player1}) do
+  def check(%Rules{state: :player1_turn} = rules, {:guess_coordinate, :player1}) do
     {:ok, %Rules{rules | state: :player2_turn}}
   end
 
-  def check(%Rules{state: :player2_turn} = rules, {:guess_codinate, :player2}) do
+  def check(%Rules{state: :player2_turn} = rules, {:guess_coordinate, :player2}) do
     {:ok, %Rules{rules | state: :player1_turn}}
   end
 

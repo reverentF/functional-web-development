@@ -51,11 +51,11 @@ defmodule IslandsEngineTest do
   test "switch players turn" do
     rules = Rules.new()
     rules = %{rules | state: :player1_turn}
-    :error = Rules.check(rules, {:guess_codinate, :player2})
-    {:ok, rules} = Rules.check(rules, {:guess_codinate, :player1})    
+    :error = Rules.check(rules, {:guess_coordinate, :player2})
+    {:ok, rules} = Rules.check(rules, {:guess_coordinate, :player1})    
     assert rules.state == :player2_turn
-    :error = Rules.check(rules, {:guess_codinate, :player1})
-    {:ok, rules} = Rules.check(rules, {:guess_codinate, :player2})    
+    :error = Rules.check(rules, {:guess_coordinate, :player1})
+    {:ok, rules} = Rules.check(rules, {:guess_coordinate, :player2})    
     assert rules.state == :player1_turn
   end
 

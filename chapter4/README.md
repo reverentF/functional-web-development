@@ -35,3 +35,23 @@
 ## Getting Started With GenServer
 - GenServerの使い方から
     - プログラミングElixirの復習
+
+## Naming GenServer Processes
+- GenServer.start_link()でプロセスに名前付けができるね
+    - `GenServer.start_link(Game, "Frank", name: :islands_game)`
+    - 今回のゲームのようなplayerのペアごとにプロセスを作る場合には、atom数の制限に引っかかる
+    - > “Elixir doesn’t garbage collect atoms”
+- グローバル名前空間でも命名できるよ
+    - `GenServer.start_link(Game, "Frank", name: [:global, "game:Frank"])`
+    - > “Global registration can be the right choice when our application runs on multiple nodes, but there are other choices when we’re working in a single node environment.”
+- `:via`オプション
+    - 命名のための独自モジュールを定義できる
+        - プロセス名とユーザ名を対応づけたりできる
+    - いくつかの関数を定義する
+- Registoryモジュール
+    - `:via`オプションのための定義済みモジュール(たぶん)
+    - Elixir1.4以降で利用可能
+    - こんな感じで使う
+        ```elixir
+            GenServer.start_link(__MODULE__, name, name: {:via, Registry, {Registry.Game, name}})
+        ```
