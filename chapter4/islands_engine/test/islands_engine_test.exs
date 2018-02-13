@@ -33,16 +33,16 @@ defmodule IslandsEngineTest do
     rules = Rules.new()
     rules = %{rules | state: :players_set}
     {:ok, rules} = Rules.check(rules, {:position_islands, :player1})
-    assert rules.player1 == :islands_set
+    assert rules.player1 == :islands_not_set
     assert rules.player2 == :islands_not_set
     assert rules.state == :players_set
   end
 
-  test "state :players_set -< :player1_turn when both players placed" do
+  test "state :players_set -> :player1_turn when both players placed" do
     rules = Rules.new()
     rules = %{rules | state: :players_set}
-    {:ok, rules} = Rules.check(rules, {:position_islands, :player1})
-    {:ok, rules} = Rules.check(rules, {:position_islands, :player2})    
+    {:ok, rules} = Rules.check(rules, {:set_islands, :player1})
+    {:ok, rules} = Rules.check(rules, {:set_islands, :player2})    
     assert rules.player1 == :islands_set
     assert rules.player2 == :islands_set
     assert rules.state == :player1_turn
