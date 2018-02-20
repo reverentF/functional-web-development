@@ -7,7 +7,7 @@ defmodule GameTest do
     Chapter 4 GenServer
   """
   test "update player name" do
-    {:ok, game} = GameSupervisor.start_game("Frank")
+    {:ok, game} = Game.start_link("Frank")
     Game.add_player(game, "Dweezil")
     state_data = :sys.get_state(game)
     assert state_data.player1.name == "Frank"
@@ -15,7 +15,7 @@ defmodule GameTest do
   end
 
   test "position island" do
-    {:ok, game} = GameSupervisor.start_game("Fred")
+    {:ok, game} = Game.start_link("Fred")
     Game.add_player(game, "Wilma")
     state_data = :sys.get_state(game)
     assert state_data.rules.state == :players_set
@@ -25,7 +25,7 @@ defmodule GameTest do
   end
 
   test "set island" do
-    {:ok, game} = GameSupervisor.start_game("Dino")
+    {:ok, game} = Game.start_link("Dino")
     Game.add_player(game, "Pebbles")
     assert Game.position_island(game, :player1, :atoll, 1, 1) == :ok
     assert Game.position_island(game, :player1, :dot, 1, 4) == :ok
@@ -41,8 +41,8 @@ defmodule GameTest do
   end
 
   test "set island both player" do
-    {:ok, game} = GameSupervisor.start_game("Dino2")
-    Game.add_player(game, "Pebbles2")
+    {:ok, game} = Game.start_link("Dino")
+    Game.add_player(game, "Pebbles")
     assert Game.position_island(game, :player1, :atoll, 1, 1) == :ok
     assert Game.position_island(game, :player1, :dot, 1, 4) == :ok
     assert Game.position_island(game, :player1, :l_shape, 1, 5) == :ok
